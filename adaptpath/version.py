@@ -41,7 +41,7 @@ if commit_hash:
     MINOR = MICRO = ''
 
 version_tuple = (MAIN, MINOR, MICRO)
-version = __version__ = '.'.join([str(i) for i in version_tuple]).strip('.')
+VERSION = version = __version__ = '.'.join([str(i) for i in version_tuple]).strip('.')
 
 
 def get_version_tuple():
