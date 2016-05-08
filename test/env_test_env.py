@@ -31,7 +31,12 @@ abs_path = os.path.abspath(__file__)
 # print('abs_path is: %s' % abs_path)
 TEST_PATH = os.path.split(abs_path)[0]
 PACKAGE_PATH = os.path.split(TEST_PATH)[0]
+# PACKAGE_PATH = os.path.split(PACKAGE_PATH)[0]
 # print('package path is: %s' % PACKAGE_PATH)
 if PACKAGE_PATH not in sys.path:
     sys.path.insert(0, PACKAGE_PATH)
+
+if __name__ == '__main__':
+    from pprint import pprint
+    pprint(sys.path)
 

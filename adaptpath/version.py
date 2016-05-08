@@ -32,7 +32,7 @@ module description details.
 # bellow is the main module body
 # ======================================================
 MAIN = 0
-MINOR = 1
+MINOR = 3
 MICRO = 0
 commit_hash = ''
 # commit_hash = 'dac4a317976354339ea66942477'
