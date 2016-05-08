@@ -28,6 +28,10 @@ sdist: ${files} test
 upload: sdist
 	python setup.py sdist upload
 
+# if task:upload is not working, use task:upload0
+upload0: sdist
+	python setup.py register sdist upload
+
 
 install : test
 	python setup.py install
