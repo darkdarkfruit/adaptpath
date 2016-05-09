@@ -15,7 +15,7 @@
 import sys
 import os
 
-if sys.version_info.major == 3:
+if sys.version_info[0] == 3:
     import importlib
 
     reload = importlib.reload
