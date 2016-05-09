@@ -33,7 +33,7 @@ module description details.
 # ======================================================
 MAIN = 0
 MINOR = 3
-MICRO = 0
+MICRO = 1
 commit_hash = ''
 # commit_hash = 'dac4a317976354339ea66942477'
 if commit_hash:
