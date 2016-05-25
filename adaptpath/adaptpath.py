@@ -14,6 +14,7 @@
 '''
 import sys
 import os
+import traceback
 
 if sys.version_info[0] == 3:
     import importlib
@@ -33,7 +34,11 @@ def get_package_path(depth=1):
 def adapt(depth=1, auto_reload_sys_path=True):
     if isinstance(depth, str):
         depth = depth.count('..')
-    package_path = get_package_path(depth)
+        package_path = get_package_path(depth)
+    elif isinstance(depth, int):
+        package_path = get_package_path_from_path(depth)
+    else:
+        package_path = get_package_path(depth)
     if package_path not in sys.path:
         sys.path.append(package_path)
     if auto_reload_sys_path:
@@ -41,7 +46,7 @@ def adapt(depth=1, auto_reload_sys_path=True):
     return package_path
 
 
-def get_package_path_from_path(depth=1, path=__file__):
+def get_package_path_from_path(depth=1, path=None):
     ''' find root importing package
 
      # Say we have dir-tree below:
@@ -57,6 +62,9 @@ def get_package_path_from_path(depth=1, path=__file__):
 
      #
      '''
+    if not path:
+        path = get___file__()
+
     try:
         abs_path = os.path.abspath(path)
         cur_dir = os.path.dirname(abs_path)
@@ -70,11 +78,45 @@ def get_package_path_from_path(depth=1, path=__file__):
     return s
 
 
-def adapt_from_path(depth=1, path=__file__, auto_reload_sys_path=True):
+def get___file__():
+    # infos = traceback.format_stack()
+    # for i in infos:
+    #     print(i)
+
+    # traceback.extract_tb(traceback[, limit])
+    # Return a list of up to limit “pre-processed” stack trace entries extracted from the traceback object traceback.
+    # It is useful for alternate formatting of stack traces. If limit is omitted or None, all entries are extracted.
+    # A “pre-processed” stack trace entry is a 4-tuple (filename, line number, function name, text) representing the information that is usually printed for a stack trace.
+    # The text is a string with leading and trailing whitespace stripped; if the source is not available it is None.
+    #
+
+    stacks = traceback.extract_stack(limit=2)
+    # pt(stacks)
+    # for stack in stacks:
+    #     # print(type(stack))
+    #     # print(stack)
+    #     filename = stack[0]
+    #     print(filename)
+
+    stack = stacks[-2] if len(stacks) >= 2 else stacks[-1]
+    return stack[0]
+
+
+def adapt_from_path(depth=1, path=None, auto_reload_sys_path=True):
     """ normally you should set :param path to __file__ """
+    if not path:
+        path = get___file__()
     package_path = get_package_path_from_path(depth, path)
     if package_path not in sys.path:
         sys.path.append(package_path)
     if auto_reload_sys_path:
         reload(sys)
     return package_path
+
+if __name__ == '__main__':
+    package_path = adapt(0)
+    print('package_path is: %s' %  package_path)
+    package_path = adapt(1)
+    print('package_path is: %s' %  package_path)
+    package_path = adapt(2)
+    print('package_path is: %s' %  package_path)
