@@ -99,7 +99,14 @@ def get___file__():
     #     print(filename)
 
     stack = stacks[-2] if len(stacks) >= 2 else stacks[-1]
-    return stack[0]
+    fpath = stack[0]
+    if os.path.isabs(fpath):
+        return fpath
+    else:
+        try:
+            return os.path.abspath(fpath)
+        except Exception as e:
+            return fpath
 
 
 def adapt_from_path(depth=1, path=None, auto_reload_sys_path=True):
@@ -113,10 +120,11 @@ def adapt_from_path(depth=1, path=None, auto_reload_sys_path=True):
         reload(sys)
     return package_path
 
+
 if __name__ == '__main__':
     package_path = adapt(0)
-    print('package_path is: %s' %  package_path)
+    print('package_path is: %s' % package_path)
     package_path = adapt(1)
-    print('package_path is: %s' %  package_path)
+    print('package_path is: %s' % package_path)
     package_path = adapt(2)
-    print('package_path is: %s' %  package_path)
+    print('package_path is: %s' % package_path)
