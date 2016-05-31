@@ -101,6 +101,10 @@ def get___file__():
         f2 = f
         if '/' in f:
             f2 = f.split('/')[-1]
+        elif '\\' in f:
+            f2 = f.split('\\')[-1] # windows: E:/config/config.py
+        else:
+            pass
         if f2 == 'adaptpath.py':
             break
         files_.append(f)
