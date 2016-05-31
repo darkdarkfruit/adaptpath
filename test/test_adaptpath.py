@@ -63,6 +63,8 @@ class TestAdaptPath(TestCase):
         path = __file__
         expected_path = os.path.dirname(os.path.dirname(os.path.abspath(path)))
         package_path = adaptpath.get_package_path_from_path(1)
+        print('expected_path is: %s' % expected_path)
+        print('package_path is: %s' % package_path)
         self.assertTrue(expected_path == package_path)
 
 

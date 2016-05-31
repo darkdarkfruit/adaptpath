@@ -90,16 +90,21 @@ def get___file__():
     # The text is a string with leading and trailing whitespace stripped; if the source is not available it is None.
     #
 
-    stacks = traceback.extract_stack(limit=2)
-    # pt(stacks)
-    # for stack in stacks:
-    #     # print(type(stack))
-    #     # print(stack)
-    #     filename = stack[0]
-    #     print(filename)
-
-    stack = stacks[-2] if len(stacks) >= 2 else stacks[-1]
-    fpath = stack[0]
+    # stacks = traceback.extract_stack(limit=2)
+    stacks = traceback.extract_stack()
+    files = [stack[0] for stack in stacks]
+    files_ = []
+    for f in files:
+        # todo: find a better way to get right caller path.
+        # note: some platform(eg: some centos) will only give a file name, not file path!
+        # 'adaptpath.py' match -> this is just a rough solution.
+        f2 = f
+        if '/' in f:
+            f2 = f.split('/')[-1]
+        if f2 == 'adaptpath.py':
+            break
+        files_.append(f)
+    fpath =  files_[-1]
     if os.path.isabs(fpath):
         return fpath
     else:
