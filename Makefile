@@ -40,9 +40,14 @@ install : test
 # git push to github
 # do `git remote add origin https://github.com/darkdarkfruit/python-adaptpath.git` first
 git_push:
-	git push 
+	git push
+
+#  --all
+#           Push all branches (i.e. refs under refs/heads/); cannot be used with other <refspec>.
+git_push_all:
+	git push --all
 
 
-# git push with tags
+# git push only tags
 git_push_tags:
 	git push --tags
