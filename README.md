@@ -1,6 +1,9 @@
 # Description
 convinent script to adapt python's sys.path
 
+# Install
+    pip install adaptpath
+
 # Usage
     * Say we have dir-tree below:
         a / b / c.py
