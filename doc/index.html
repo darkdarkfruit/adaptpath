@@ -5,19 +5,22 @@
     <title>adaptpath</title>
 </head>
 <body>
-Description
-convinent script to adapt python's sys.path
+<div id="preview" preview="" debounce="150"><h1><a id="Description_0"></a>Description</h1>
 
-Usage
-* Say we have dir-tree below:
+    <p>convinent script to adapt python’s sys.path</p>
+
+    <h1><a id="Usage_3"></a>Usage</h1>
+<pre><code>* Say we have dir-tree below:
     a / b / c.py
     x / y / z.py
 
-* Now suppose we are in "z.py" and we want to do this:
+    * Now suppose we are in "z.py" and we want to do this:
     from a.b import c
 
-* We can put the lines below ahead of "z.py"
+    * We can put the lines below ahead of "z.py"
     from adaptpath import adaptpath
     adaptpath.adapt_from_path(2, __file__)
+</code></pre>
+</div>
 </body>
 </html>
