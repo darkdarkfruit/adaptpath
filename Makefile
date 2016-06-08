@@ -1,4 +1,4 @@
-files = adaptpath/version.py adaptpath/adaptpath.py
+files = adaptpath/adaptpath.py
 file_pytest_genscript = adaptpath/_test_adaptpath_pytest.py
 
 default: test
@@ -15,7 +15,7 @@ test: ${files}
 	python setup.py test
 
 # just pytest adaptpath
-stest: 
+pytest:
 	pytest test 
 
 
