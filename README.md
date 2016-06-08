@@ -15,5 +15,8 @@ convinent script to adapt python's sys.path
     * We can put the lines below ahead of "z.py"
         from adaptpath import adaptpath
         adaptpath.adapt_from_path(2, __file__)
+        
+# Test
+    pytest test   
     
 
